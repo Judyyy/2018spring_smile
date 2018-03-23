@@ -1,2 +1,37 @@
-*.txt
-*.jpg
+#######
+# latex temporary files
+#######
+
+*.out
+*.blg
+*.synctex.gz
+*.log
+*.aux
+*.fdb_latexmk
+*.toc
+.DS_Store
+*.fls
+*.bbl
+
+#######
+# data temporary files
+#######
+
+*.pkl
+*.mat
+*.eps
+*.pdf
+
+#######
+# system temporary files
+#######
+
+_BIN
+__pycache__
+*.pyc
+src/.ipynb_checkpoints
+
+#######
+# user specified
+#######
+
