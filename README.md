@@ -1,4 +1,4 @@
-## 2017fall_smile
+## 2018spring_smile
 
 ### Intro
 
@@ -23,7 +23,7 @@ refer to: [real-time facial emotion recognition](https://www.youtube.com/watch?v
 
          please try to modify the following two lines:
         * zhenyu: find pytorch code
-        * judy: find images 
+        * judy: find images
 
     - Use python package `opencv` to detect faces in a photo, something like
             <div align="center"><img width="50%" height="50%" src="http://www.compciv.org/files/images/homework/face-boxer-ellen.jpg"/></div>
