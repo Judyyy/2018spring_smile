@@ -11,8 +11,6 @@ from torch import utils
 import matplotlib.pyplot as plt
 from PIL import Image
 import pickle
-<<<<<<< HEAD
-<<<<<<< HEAD
 import cv2
 import os
 import random
@@ -40,12 +38,12 @@ import torch.utils.data as data_utils
 #     for im in  os.listdir(foldLoc): #picture name, eg: Anger185.jpg.jpg
 #         f = foldLoc+im #path of each picture, eg: /Users/JudyLu/Desktop/2017fall_smile/src/images/Anger/Anger185.jpg.jpg
 #         if im[0] == '.':
-#             continue  
+#             continue
 #         img = cv2.imread(f,0) #greyscale,matrix form of an image
 #         ima.append(img)
 #         name.append(im)
 #         res = cv2.resize(img,None,fx=1, fy=1, interpolation = cv2.INTER_CUBIC)
-#         imM = np.array(res) 
+#         imM = np.array(res)
 #         X.append(imM)
 #         y.append(i)
 # i=i+1
@@ -83,9 +81,6 @@ exit()
 best_acc = 0
 use_cuda = torch.cuda.is_available()
 start_epoch = 0
-=======
-=======
->>>>>>> cf7e1ce573887f78355d3753178b12481acee7a5
 use_gpu = True
 
 
@@ -101,11 +96,6 @@ xTe =np.array( data['XTe']/255.0, dtype='f')
 print (len(X), len(xTe))
 
 
-
-
-
-
->>>>>>> cf7e1ce573887f78355d3753178b12481acee7a5
 class Model(nn.Module):
     def __init__(self):
         super(Model, self).__init__()
@@ -134,12 +124,7 @@ class Model(nn.Module):
         x = F.relu(self.fc2(x))
         x = F.dropout(x, training=self.training)
         x = self.fc3(x)
-<<<<<<< HEAD
         print(x)
-        return F.log_softmax(x)
-        
-
-=======
         return F.log_softmax(x)
 
 class NaiveModel(nn.Module):
@@ -170,10 +155,6 @@ class NaiveModel(nn.Module):
 
 
 # model = Model()
-<<<<<<< HEAD
->>>>>>> cf7e1ce573887f78355d3753178b12481acee7a5
-=======
->>>>>>> cf7e1ce573887f78355d3753178b12481acee7a5
 model = Model()
 
 if use_cuda:
@@ -181,13 +162,11 @@ if use_cuda:
     model = torch.nn.DataParallel(model, device_ids=range(torch.cuda.device_count()))
     cudnn.benchmark = True
 
-<<<<<<< HEAD
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters())
 
 def test(epoch):
     global best_acc
-=======
 #print ('ylength', n)
 #print ('testLength', nTest)
 batch_size = 20
@@ -201,11 +180,9 @@ avg_test_accu = []
 
 def testing_acc():
 
->>>>>>> cf7e1ce573887f78355d3753178b12481acee7a5
     model.eval()
     test_loss = 0
     correct = 0
-<<<<<<< HEAD
     total = 0
     for idx, (X, y) in enumerate(test_loader):
         if use_cuda:
@@ -241,7 +218,6 @@ def train(epoch):
     model.train()
     train_loss = 0
     correct = 0
-<<<<<<< HEAD
     total = 0
     for idx, (X, y) in enumerate(train_loader):
         if use_cuda:
@@ -265,16 +241,13 @@ for epoch in range(start_epoch, start_epoch+200):
     train(epoch)
     test(epoch)
 
-=======
-=======
->>>>>>> cf7e1ce573887f78355d3753178b12481acee7a5
     for i in range(n_test//20): #batch size = 20
         teX = xTe[i*20:(i+1)*20,:,:,:]
         testX = torch.from_numpy(teX)
 
         tey = yTe[i*20:(i+1)*20]
         testy = torch.from_numpy(tey)
-        
+
         if use_gpu:
             testX= testX.cuda()
             testy=testy.cuda()
@@ -300,7 +273,7 @@ for epoch in range(200):
     for i in range(n//batch_size):
         optimizer.zero_grad()
         yD  =  y[i*batch_size:(i+1)*batch_size]
-        if use_gpu: 
+        if use_gpu:
             yD = yD.cuda()
         #print (yD)
         yy = torch.from_numpy(yD)
@@ -308,9 +281,9 @@ for epoch in range(200):
         train_label = Variable(yy)
         #print (train_label)
         xD  =  X[i*batch_size:(i+1)*batch_size,:,:,:]
-        if use_gpu: 
+        if use_gpu:
             xx = xx.cuda()
-        xx = torch.from_numpy(xD) # creates a tensor 
+        xx = torch.from_numpy(xD) # creates a tensor
         xOut = model.forward(Variable(xx))
         #break
         loss = F.nll_loss(xOut, train_label)
@@ -337,10 +310,6 @@ for epoch in range(200):
 #print (train_accu)
 #print (test_accu)
 #x = np.arange(0, 100)
-<<<<<<< HEAD
->>>>>>> cf7e1ce573887f78355d3753178b12481acee7a5
-=======
->>>>>>> cf7e1ce573887f78355d3753178b12481acee7a5
 plt.plot(avg_train_accu, label = 'training')
 plt.plot(avg_test_accu, label = 'testing')
 plt.ylabel('accuracy')
@@ -349,14 +318,4 @@ plt.legend()
 plt.show()
 
 filename = 'model.sav'
-<<<<<<< HEAD
-<<<<<<< HEAD
 pickle.dump(model, open(filename, 'wb'))
-=======
-pickle.dump(model, open(filename, 'wb'))
-
->>>>>>> cf7e1ce573887f78355d3753178b12481acee7a5
-=======
-pickle.dump(model, open(filename, 'wb'))
-
->>>>>>> cf7e1ce573887f78355d3753178b12481acee7a5
