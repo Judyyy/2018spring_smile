@@ -34,4 +34,5 @@ src/.ipynb_checkpoints
 #######
 # user specified
 #######
-
+src/.ftpconfig
+src/.ftpignore
